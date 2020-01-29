@@ -1,6 +1,6 @@
 import * as actions from "../actions/userActions/userActions";
 
-export const  baseurl = (window.location.origin==="http://172.19.63.202")?"https://switchroo.herokuapp.com":window.location.origin;
+export const  baseurl = (window.location.origin==="http://localhost:3000")?"https://switchroo.herokuapp.com":window.location.origin;
 
 const post = (url, data,auth, dispatch, callback) => {
     dispatch(actions.Loading(true))
