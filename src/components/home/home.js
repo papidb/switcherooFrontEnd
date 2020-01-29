@@ -22,6 +22,7 @@ import SwitcherThree from '../details/switcher3/switcher3';
 import AdditionalPropertyIndex from "../details/additionalProperty/additionalPropertyIndex";
 import FinalPage from "../details/FinalPage/FinalPage";
 import PersonalDetails1 from "../personalDetails/personalDetails1/personalDetails1";
+import ExpertChat from "../expertChat/expertChat";
 const { Panel } = Collapse;
 
 function Home(props) {
@@ -58,6 +59,7 @@ function Home(props) {
                     <Route exact path="/home/details/additional_p/:number" component={AdditionalPropertyIndex} />
                     <Route exact path="/home/details/final_page" component={FinalPage} />
                     <Route exact path="/home/details/personal_d1" component={PersonalDetails1} />
+                    <Route exact path="/home/chatExpert" component={ExpertChat} />
                     <Route  path="/home" component={Feed} />
                   </Switch>
                 </Row>

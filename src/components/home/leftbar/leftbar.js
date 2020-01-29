@@ -73,7 +73,12 @@ class LeftBar extends React.Component {
             <p>Your Documentation</p>
           </Menu.Item>
           <span className="connector"></span>
-          <Menu.Item key="5">
+          <Menu.Item
+            key="5"
+            onClick={() => {
+              this.handleRoute("/home/chatExpert");
+            }}
+          >
             <span className="menu-icon">
               <img src="images/home/icons/chat_icon.png" />
             </span>
