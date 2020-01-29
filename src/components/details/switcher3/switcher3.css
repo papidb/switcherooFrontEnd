@@ -1,0 +1,293 @@
+.switcher-three {
+  min-height: 80vh;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 80px;
+  clear: both;
+  border-radius: 10px;
+  font-family: Montserrat;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+}
+.switcher-three .q1 .radio-container {
+  width: 37%;
+  float: left;
+  margin: 0 40px 0 0;
+  cursor: pointer;
+  height: 40px;
+  background: #cccccc;
+  border-radius: 20px;
+  border: 2px solid gray;
+}
+.switcher-three .q1 .radio-container:last-child {
+  margin: 0 0 0 0;
+}
+.switcher-three .q1 input[type="radio"]:checked,
+.switcher-three .q1 input[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+.switcher-three .q1 input[type="radio"]:checked + label,
+.switcher-three .q1 input[type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  color: white;
+  margin: 9px 0 0 30px;
+}
+
+.switcher-three .q1 input[type="radio"]:checked + label:before,
+.switcher-three .q1 input[type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid gray;
+  border-radius: 100%;
+  background: #fff;
+}
+
+.switcher-three .q1 input[type="radio"]:checked + label:after,
+.switcher-three .q1 input[type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: gray;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.switcher-three .q1 input[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.switcher-three .q1 input[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.switcher-three .q3 .radio-container {
+  float: none;
+  width: 30%;
+  margin: 0 0 10px 0;
+}
+.switcher-three .q4 .radio-container {
+  float: left;
+  width: 30%;
+  margin: 0 25px 0 0;
+}
+
+.switcher-three .heading1 {
+  font-size: 22px;
+  color: #62635d;
+  font-weight: 600;
+  margin: 17px 0 40px 0;
+  font-style: italic;
+}
+.switcher-three .heading2 {
+  margin: 35px 0 10px 0;
+}
+.switcher-three .h61 {
+  font-size: 16px;
+  color: #62635d;
+  margin: 35px 0 15px 0;
+  padding: 0 0 0 4px;
+}
+.switcher-three .h61.mm {
+  font-size: 16px;
+  color: #62635d;
+  margin: 35px 0 0px 0;
+  padding: 0 0 0 4px;
+}
+.switcher-three .mini-msg {
+  font-size: 14px;
+  color: #62635d;
+  margin: 0 0 15px 0;
+  padding: 0 0 0 4px;
+}
+.switcher-three .select-option1 {
+  width: 30%;
+  /* height: 50px; */
+}
+.switcher-three .select-option2 {
+  width: 17%;
+  margin: 0 15px 0 0;
+}
+.switcher-three .ant-select-selection--single {
+  background: rgb(251, 149, 0);
+  border: rgb(251, 149, 0);
+  border-radius: 20px;
+  height: 37px;
+}
+.switcher-three .ant-select-selection--single:active {
+  border: rgb(251, 149, 0);
+  box-shadow: none;
+}
+.switcher-three .ant-select-selection--single:focus {
+  border: rgb(251, 149, 0);
+  box-shadow: none;
+}
+.switcher-three .ant-select-selection__rendered {
+  line-height: 37px;
+  color: white;
+  font-weight: 600;
+  padding: 0 0 0 12px;
+}
+.switcher-three .ant-select-arrow {
+  color: white;
+  padding: 0 10px 0 0;
+}
+
+.switcher-three .ant-select-arrow path {
+  stroke-width: 161px;
+  stroke: white;
+}
+.switcher-three .btn-div button {
+  margin: 0 20px 0 0;
+  padding: 10px 35px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  color: white;
+}
+.switcher-three .btn-div {
+  margin: 20px 0 0 0;
+}
+.switcher-three .btn-div .btn1 {
+  background: gray;
+}
+.switcher-three .btn-div .btn2 {
+  background: #fb9500;
+}
+.switcher-three .btn-div .btn2 {
+  height: 40px;
+}
+.switcher-three .input {
+  margin: 0 0 22px 0;
+}
+.switcher-three .input input {
+  width: 47%;
+  height: 40px;
+  background: #cccccc;
+  border-radius: 20px;
+  border: 2px solid gray;
+  outline: none;
+  padding: 0 20px 0 40px;
+  font-weight: 600;
+  color: white;
+}
+
+.switcher-three .input input::placeholder {
+  color: white;
+}
+
+.switcher-three .input2 {
+  margin: 0 0 0 0;
+  float: left;
+  border-radius: 20px;
+  border: 2px solid rgb(251, 149, 0);
+  width: 30%;
+  height: 40px;
+  padding: 0 0 0 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  background: rgb(251, 149, 0);
+}
+.switcher-three .input2disabled{
+  background: #cccccc;
+  border-radius: 20px;
+  border: 2px solid gray;
+}
+.switcher-three .input2disabled input{
+  background: #cccccc !important;
+}
+.switcher-three .input-edit-btn {
+  height: 40px;
+  width: 70px;
+  margin: 0 0 0 20px;
+  float: left;
+  cursor: pointer;
+}
+.switcher-three .input-edit-btn span{
+  line-height:40px;
+  /* padding:0 0 0 10px; */
+  font-size: 18px;
+  font-weight: 600;
+  float: left;
+
+  /* font-family: inherit; */
+}
+.switcher-three .input-edit-btn .span1::before{
+padding: 0 8px 0 0;
+}
+.switcher-three .input2 .pre {
+  line-height: 36px;
+  float: left;
+}
+
+.switcher-three .input2 input {
+  width: 85%;
+  height: 36px;
+  border: none;
+  outline: none;
+  background: rgb(251, 149, 0);
+  padding: 0 15px;
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+}
+
+.switcher-three .input2 input::placeholder {
+  color: white;
+}
+
+.switcher-three .input3 {
+  margin: 0 0 0px 0;
+}
+.switcher-three .input3 input {
+  width: 30%;
+  height: 40px;
+  background: rgb(251, 149, 0);
+  border-radius: 20px;
+  border: 2px solid rgb(251, 149, 0);
+  outline: none;
+  padding: 0 20px 0 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.switcher-three .input3 input::placeholder {
+  color: white;
+}
+
+.switcher-three .textarea-input {
+  width: 47%;
+}
+.switcher-three .textarea-input textarea {
+  width: 100%;
+  resize: none;
+  height: 100px;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  background: rgb(251, 149, 0);
+}
+.switcher-three .textarea-input textarea::placeholder {
+  color: white;
+}
+.switcher-three .textarea-input textarea:focus {
+  border: none;
+}

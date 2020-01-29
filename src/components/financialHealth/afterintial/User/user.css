@@ -1,0 +1,7 @@
+.user_form{
+    width: 100% !important;
+  
+}
+.asdfasd .ant-calendar-picker-input.ant-input::selection{
+border: 0 !important;
+}
