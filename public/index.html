@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <base href="/">
+    <base href="/" />
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,16 +40,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="https://kit.fontawesome.com/fdd052dd75.js" crossorigin="anonymous"></script> 
+    <script
+      src="https://kit.fontawesome.com/fdd052dd75.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <!-- <script src="client.js"></script> -->
     <script>
-    // const io=require("socket.io-client");
-const baseurl = (window.location.origin==="http://localhost:3000")?"http://localhost:8080":window.location.origin;
+      // const io=require("socket.io-client");
+      const baseurl =
+        window.location.origin === "http://localhost:3000"
+          ? "https://switchroo.herokuapp.com"
+          : window.location.origin;
 
-    const socket=io.connect(baseurl);
-    window.socket=socket;
-   window.baseurl=baseurl;
-    </script>   
+      const socket = io.connect(baseurl);
+      window.socket = socket;
+      window.baseurl = baseurl;
+    </script>
   </body>
 </html>
