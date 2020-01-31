@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { Icon } from "antd";
+import EditImage from "../../assets/edit.png";
 
 const Bubble = styled.div`
   ${({ message }) => `background: ${message ? "#FB9500" : "#707070"};`}
   position: relative;
   min-width: 60%;
-  border-radius: 5px;
-  padding: 15px 10px;
+  border-radius: 15px;
+  padding: 25px 15px;
   margin: 10px 0px;
   color: white;
   font-size: 16px;
@@ -41,7 +41,7 @@ const Bubble = styled.div`
   },
 `;
 
-const Chatbubble = ({ children, message }) => {
+const Chatbubble = ({ children, message, time }) => {
   return (
     <li
       style={{ position: "relative" }}
@@ -62,11 +62,13 @@ const Chatbubble = ({ children, message }) => {
             cursor: "pointer"
           }}
         >
-          <Icon type="edit" style={{ color: "white", fontSize: "26px" }} />
+          <img className="img" src={EditImage} />
+
+          {/* <Icon type="edit" style={{ color: "white", fontSize: "26px" }} /> */}
         </span>
       )}
       <span style={{ marginLeft: "60px", marginTop: "10px" }}>
-        {moment().format("HH:MM")}
+        {moment(time).format("HH:MM")}
       </span>
     </li>
   );
