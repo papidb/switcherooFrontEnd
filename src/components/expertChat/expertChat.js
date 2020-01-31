@@ -22,6 +22,7 @@ class ExpertChat extends Component {
     this.setResponse = this.setResponse.bind(this);
     this.setChat = this.setChat.bind(this);
     this.clearResponse = this.clearResponse.bind(this);
+    this.getResponse = this.getResponse.bind(this);
   }
   // const [state, setState] = useState();
   // const [isLoading, setLoading] = useState(true);
@@ -59,46 +60,7 @@ class ExpertChat extends Component {
           if (!err) {
             const chat = res.chat;
             let waitTime = 0;
-            if (chat) {
-              const questions = chat.questions;
-              let newChat = [
-                ...chats,
-                {
-                  message: questions[0],
-                  time: Date.now(),
-                  status: "message",
-                  ...chat
-                }
-              ];
-              setChat(newChat);
-              let possibleResponse = chat.children.map(({ _id, response }) => ({
-                _id,
-                response
-              }));
-              questions.forEach((question, i) => {
-                if (i == 0) return;
-                setLoading(true);
-                waitTime = waitTime + 2000;
-                setTimeout(() => {
-                  let newChat = [
-                    ...this.state.chats,
-                    {
-                      message: question,
-                      time: Date.now(),
-                      status: "message",
-                      ...chat
-                    }
-                  ];
-                  // console.log({ newChat });
-                  // console.log({ newChat: this.state.chats });
-                  setChat(newChat);
-                  if (questions.length - 1 == i) {
-                    setLoading(false);
-                    setResponse(possibleResponse);
-                  }
-                }, waitTime);
-              });
-            }
+            this.getResponse(chat);
           }
           console.log(res, err);
         }
@@ -231,51 +193,7 @@ class ExpertChat extends Component {
                             if (!err) {
                               const chat = res;
                               let waitTime = 0;
-                              if (chat) {
-                                console.log({ chat });
-                                const questions = chat.questions;
-                                let newChat = [
-                                  ...this.state.chats,
-                                  {
-                                    message: questions[0],
-                                    time: Date.now(),
-                                    status: "message",
-                                    ...chat
-                                  }
-                                ];
-                                console.log({ newChat });
-                                setChat(newChat);
-                                let possibleResponse =
-                                  chat.children &&
-                                  chat.children.map(({ _id, response }) => ({
-                                    _id,
-                                    response
-                                  }));
-                                questions.forEach((question, i) => {
-                                  if (i == 0) return;
-                                  setLoading(true);
-                                  waitTime = waitTime + 2000;
-                                  setTimeout(() => {
-                                    let newChat = [
-                                      ...this.state.chats,
-                                      {
-                                        message: question,
-                                        time: Date.now(),
-                                        status: "message",
-                                        ...chat
-                                      }
-                                    ];
-                                    // console.log({ newChat });
-                                    // console.log({ newChat: this.state.chats });
-                                    setChat(newChat);
-                                    if (questions.length - 1 == i) {
-                                      setLoading(false);
-                                      possibleResponse &&
-                                        setResponse(possibleResponse);
-                                    }
-                                  }, waitTime);
-                                });
-                              }
+                              this.getResponse(chat);
                             }
                             console.log(res, err);
                           }
@@ -299,6 +217,56 @@ class ExpertChat extends Component {
       </>
     );
   }
+  getResponse = chat => {
+    let waitTime = 0;
+
+    const { setChat, setLoading, setResponse } = this;
+
+    if (chat) {
+      console.log({ chat });
+      const questions = chat.questions;
+      let newChat = [
+        ...this.state.chats,
+        {
+          message: questions[0],
+          time: Date.now(),
+          status: "message",
+          ...chat
+        }
+      ];
+      setChat(newChat);
+      let possibleResponse =
+        chat.children &&
+        chat.children.map(({ _id, response }) => ({
+          _id,
+          response
+        }));
+      questions.forEach((question, i) => {
+        if (i == 0) return;
+        setLoading(true);
+        console.log({ waitTime });
+        waitTime = waitTime + 2000;
+        setTimeout(() => {
+          let newChat = [
+            ...this.state.chats,
+            {
+              message: question,
+              time: Date.now(),
+              status: "message",
+              ...chat
+            }
+          ];
+          // console.log({ newChat });
+          // console.log({ newChat: this.state.chats });
+          setChat(newChat);
+          if (questions.length - 1 == i) {
+            setLoading(false);
+            possibleResponse && setResponse(possibleResponse);
+          }
+        }, waitTime);
+      });
+    }
+  };
 }
 
 const mapDispatchToProps = dispatch => ({
