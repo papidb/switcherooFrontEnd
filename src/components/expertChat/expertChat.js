@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 const { Panel } = Collapse;
 
 const { Header, Content, Footer } = Layout;
+const TIME_INCREMENT = 200;
 
 class ExpertChat extends Component {
   constructor(props) {
@@ -31,11 +32,17 @@ class ExpertChat extends Component {
     chats: [],
     possibleResponse: []
   };
+  scrollToBottom = () => {
+    this.messagesEnd && this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
+  componentDidUpdate() {}
   // const [chats, setChat] = useState([]);
   setLoading = isLoading => {
     this.setState({ isLoading });
   };
   setResponse = possibleResponse => {
+    console.log("to set possibl3 response: ", possibleResponse);
+    if (!possibleResponse) return;
     this.setState({ possibleResponse });
   };
   clearResponse = _ => {
@@ -44,6 +51,7 @@ class ExpertChat extends Component {
   setChat = chats => {
     const { state } = this;
     this.setState({ chats });
+    this.scrollToBottom();
   };
   componentDidMount() {
     const { dispatch } = this.props;
@@ -82,7 +90,8 @@ class ExpertChat extends Component {
                 display: "flex",
                 flex: 1,
                 height: "auto",
-                minHeight: "70vh",
+                maxHeight: "80vh",
+                minHeight: "80vh",
                 flexDirection: "column"
               }}
             >
@@ -111,14 +120,20 @@ class ExpertChat extends Component {
                 </span>
               </div>
 
-              <ul
+              <div
                 className="chat-container"
                 style={{
                   display: "flex",
                   flex: 1,
                   height: "90%",
                   flexDirection: "column",
-                  padding: "10px"
+                  padding: "10px",
+                  position: "relative",
+                  overflowY: "scroll",
+                  overflowX: "hidden",
+                  width: "100%",
+                  height: "100%",
+                  transform: "translateZ(0)"
                 }}
               >
                 {chats.map(({ status, message, time, _id }, i) => {
@@ -132,10 +147,13 @@ class ExpertChat extends Component {
                     </Chatbubble>
                   );
                 })}
-                {/* <Chatbubble message>Hey</Chatbubble>
-              <Chatbubble>Hey</Chatbubble> */}
+                <div
+                  ref={el => {
+                    this.messagesEnd = el;
+                  }}
+                ></div>
                 {isLoading && <strong>Expert typing...</strong>}
-              </ul>
+              </div>
               <div
                 className="actions-part"
                 style={{
@@ -144,7 +162,7 @@ class ExpertChat extends Component {
                   borderTop: "1px solid #707070",
                   display: "flex",
                   alignItems: "center",
-
+                  padding: "20px",
                   //
                   display: "flex"
                 }}
@@ -166,7 +184,8 @@ class ExpertChat extends Component {
                         color: "white",
                         fontWeight: "bold",
                         margin: "0px 5px",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        minWidth: "100px"
                       }}
                       onClick={async () => {
                         const { setChat, setLoading, setResponse } = this;
@@ -181,9 +200,12 @@ class ExpertChat extends Component {
                         ];
 
                         this.setChat(newChat);
+                        await this.scrollToBottom();
                         this.clearResponse();
                         this.setLoading(true);
                         const token = localStorage.getItem("tokenas");
+                        this.scrollToBottom();
+
                         await api.post(
                           "/api/expertChat/getResponse",
                           { _id },
@@ -193,6 +215,7 @@ class ExpertChat extends Component {
                             if (!err) {
                               const chat = res;
                               let waitTime = 0;
+                              this.scrollToBottom();
                               this.getResponse(chat);
                             }
                             console.log(res, err);
@@ -221,9 +244,8 @@ class ExpertChat extends Component {
     let waitTime = 0;
 
     const { setChat, setLoading, setResponse } = this;
-
+    this.scrollToBottom();
     if (chat) {
-      console.log({ chat });
       const questions = chat.questions;
       let newChat = [
         ...this.state.chats,
@@ -241,11 +263,17 @@ class ExpertChat extends Component {
           _id,
           response
         }));
+      if (questions.length <= 1) {
+        setLoading(false);
+        this.setResponse(possibleResponse);
+      }
+
       questions.forEach((question, i) => {
         if (i == 0) return;
         setLoading(true);
-        console.log({ waitTime });
-        waitTime = waitTime + 2000;
+        waitTime = waitTime + TIME_INCREMENT;
+        this.scrollToBottom();
+
         setTimeout(() => {
           let newChat = [
             ...this.state.chats,
@@ -259,9 +287,11 @@ class ExpertChat extends Component {
           // console.log({ newChat });
           // console.log({ newChat: this.state.chats });
           setChat(newChat);
+           this.scrollToBottom();
+
           if (questions.length - 1 == i) {
             setLoading(false);
-            possibleResponse && setResponse(possibleResponse);
+            this.setResponse(possibleResponse);
           }
         }, waitTime);
       });

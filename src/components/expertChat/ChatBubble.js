@@ -11,7 +11,7 @@ const Bubble = styled.div`
   padding: 25px 15px;
   margin: 10px 0px;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   &:after {
     // whatever you want with normal CSS syntax. Here, a custom orange line as example
     content: " ";
@@ -43,7 +43,7 @@ const Bubble = styled.div`
 
 const Chatbubble = ({ children, message, time }) => {
   return (
-    <li
+    <div
       style={{ position: "relative" }}
       className={`chat__ ${!message && "reply_message"}`}
     >
@@ -70,7 +70,7 @@ const Chatbubble = ({ children, message, time }) => {
       <span style={{ marginLeft: "60px", marginTop: "10px" }}>
         {moment(time).format("HH:MM")}
       </span>
-    </li>
+    </div>
   );
 };
 
