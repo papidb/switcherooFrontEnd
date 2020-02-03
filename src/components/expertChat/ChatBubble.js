@@ -41,7 +41,15 @@ const Bubble = styled.div`
   },
 `;
 
-const Chatbubble = ({ children, message, time }) => {
+const Chatbubble = ({
+  children,
+  message,
+  time,
+  possibleResponse,
+  setResponse,
+  dropdown,
+  ...props
+}) => {
   return (
     <div
       style={{ position: "relative" }}
@@ -61,6 +69,9 @@ const Chatbubble = ({ children, message, time }) => {
             right: "10px",
             cursor: "pointer"
           }}
+          onClick={() => {
+            setResponse(possibleResponse);
+          }}
         >
           <img className="img" src={EditImage} />
 
@@ -68,7 +79,7 @@ const Chatbubble = ({ children, message, time }) => {
         </span>
       )}
       <span style={{ marginLeft: "60px", marginTop: "10px" }}>
-        {moment(time).format("HH:MM")}
+        {moment(time).format("hh:mm a	")}
       </span>
     </div>
   );
